@@ -1,10 +1,32 @@
 import Container from "@/components/Container";
+import FormSubmitButton from "@/components/Buttons/FormSubmitButton";
+import prisma from "@/lib/prisma";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export const metadata: Metadata = {
   title: "Add product",
 };
+
+async function addProduct(formData: FormData) {
+  "use server";
+
+  const name = formData.get("name")?.toString();
+  const description = formData.get("description")?.toString();
+  const imageUrl = formData.get("imageUrl")?.toString();
+  const price = Number(formData.get("price") || 0);
+
+  if (!name || !description || !imageUrl || !price) {
+    throw Error("Please fill all fields");
+  }
+
+  await prisma.product.create({
+    data: { name, description, imageUrl, price },
+  });
+
+  redirect("/");
+}
 
 export default function AddProduct() {
   return (
@@ -17,11 +39,11 @@ export default function AddProduct() {
 
           {/* Add Product form */}
           <div className="max-w-sm mx-auto">
-            <form>
+            <form action={addProduct}>
               <div className="flex flex-wrap -mx-3 mb-4">
                 <div className="w-full px-3">
                   <label
-                    htmlFor="title"
+                    htmlFor="name"
                     className="block text-gray-800 text-sm font-medium mb-1"
                   >
                     Name
@@ -63,8 +85,9 @@ export default function AddProduct() {
                   </label>
                   <input
                     required
+                    name="imageUrl"
                     placeholder="Image Url"
-                    type="text"
+                    type="url"
                     className="form-input w-full text-gray-800"
                   />
                 </div>
@@ -73,26 +96,24 @@ export default function AddProduct() {
               <div className="flex flex-wrap -mx-3 mb-4">
                 <div className="w-full px-3">
                   <label
-                    htmlFor="imageUrl"
+                    htmlFor="price"
                     className="block text-gray-800 text-sm font-medium mb-1"
                   >
                     Item Number
                   </label>
                   <input
                     required
-                    placeholder="Item #number"
+                    name="price"
+                    placeholder="Price"
                     type="number"
                     className="form-input w-full text-gray-800"
                   />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="btn-sm mt-6 w-full bg-blue-500 text-white"
-              >
+              <FormSubmitButton className="btn-sm mt-6 w-full bg-blue-500 text-white">
                 Submit
-              </button>
+              </FormSubmitButton>
             </form>
           </div>
         </section>
