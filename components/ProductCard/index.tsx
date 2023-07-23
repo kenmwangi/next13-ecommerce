@@ -1,3 +1,4 @@
+import { formatPrice } from "@/lib/formatPrice";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,25 +9,38 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const isNew =
+    Date.now() - new Date(product.createdAt).getTime() <
+    1000 * 60 * 60 * 24 * 7;
   return (
-    <div className="group relative">
-      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+    <div className="relative text-white rounded-md flex flex-col transition border-[1px] border-gray-100">
+      <Link href={`products/${product.id}`} className="inset-0 absolute"></Link>
+      <div className="overflow-hidden relative rounded-md">
         <Image
           src={product.imageUrl}
-          width={250}
-          height={250}
-          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+          width={400}
+          height={400}
+          className="object-cover w-full h-[300px]"
           alt={product.name}
         />
       </div>
-      <div className="mt-4 flex justify-between">
+
+      <div className="mt-4 flex justify-between px-6 pt-5 pb-5">
         <div>
-          <h4 className="text-lg text-gray-900 font-medium">
-            <Link href={`/products/${product.id}`}>
-              <span className="absolute inset-0"></span>
-              {product.name}
-            </Link>
-          </h4>
+          <div className="">
+            <h4 className="text-lg text-gray-900 font-medium">
+              <Link href={`/products/${product.id}`} className="">
+                <span className="absolute inset-0"></span>
+                {product.name}
+                {isNew && (
+                  <span className="bg-rose-500 rounded text-xs p-1 ml-2 text-white">
+                    New
+                  </span>
+                )}
+              </Link>
+            </h4>
+            <p>{formatPrice(product.price)}</p>
+          </div>
           <p className="mt-2 text-sm font-medium leading-4 text-gray-500">
             {product.description}
           </p>
