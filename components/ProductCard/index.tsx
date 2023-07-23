@@ -25,26 +25,24 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
       </div>
 
-      <div className="mt-4 flex justify-between px-6 pt-5 pb-5">
-        <div>
-          <div className="">
-            <h4 className="text-lg text-gray-900 font-medium">
-              <Link href={`/products/${product.id}`} className="">
-                <span className="absolute inset-0"></span>
-                {product.name}
-                {isNew && (
-                  <span className="bg-rose-500 rounded text-xs p-1 ml-2 text-white">
-                    New
-                  </span>
-                )}
-              </Link>
-            </h4>
-            <p>{formatPrice(product.price)}</p>
-          </div>
-          <p className="mt-2 text-sm font-medium leading-4 text-gray-500">
-            {product.description}
-          </p>
+      <div className="mt-4 px-6 pt-5 pb-5">
+        <div className="">
+          <h4 className="text-lg text-gray-900 font-medium">
+            <Link href={`/products/${product.id}`} className="">
+              {product.name}
+              {isNew && (
+                <span className="bg-rose-500 rounded text-xs p-1 ml-2 text-white">
+                  New
+                </span>
+              )}
+            </Link>
+          </h4>
         </div>
+
+        <p className="mt-2 text-sm font-medium leading-4 text-gray-500">
+          {product.description}
+        </p>
+        <p className="mt-3 text-gray-600">{formatPrice(product.price)}</p>
       </div>
     </div>
   );
