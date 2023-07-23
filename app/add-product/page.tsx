@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import FormSubmitButton from "@/components/Buttons/FormSubmitButton";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
