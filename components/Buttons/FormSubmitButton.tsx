@@ -16,7 +16,7 @@ export default function FormSubmitButton({
 
   return (
     <button {...props} className={className} type="submit" disabled={pending}>
-      {pending ? <span>Loading ...</span> : ""}
+      {pending && <span>Loading ...</span>}
       {children}
     </button>
   );
