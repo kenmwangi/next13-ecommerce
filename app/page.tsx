@@ -9,8 +9,6 @@ export default async function Home() {
     orderBy: { id: "desc" },
   });
 
-  console.log(products);
-
   return (
     <div className="pt-32 pb-12 md:pt-40 md:pb-20">
       <Container>
