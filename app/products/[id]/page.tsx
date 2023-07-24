@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import AddToCartButton from "@/components/Buttons/AddToCartButton";
+import { incrementProductQuantity } from "./actions";
 
 interface ProductPageProps {
   params: {
@@ -45,14 +47,20 @@ export default async function ProductPage({
           alt={product.name}
           width={500}
           height={500}
-          className="rounded-lg"
+          className="rounded-lg mb-3"
           priority
         />
 
-        <div>
+        <div className="mt-2">
           <h1 className="text-5xl font-bold">{product.name}</h1>
           <p className="text-gray-600">{formatPrice(product.price)}</p>
           <p className="py-6">{product.description}</p>
+          <span className="text-gray-500">
+            <AddToCartButton
+              productId={product.id}
+              incrementProductQuantity={incrementProductQuantity}
+            />
+          </span>
         </div>
       </Container>
     </div>
