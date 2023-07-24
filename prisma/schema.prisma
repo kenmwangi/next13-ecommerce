@@ -15,16 +15,16 @@ model Product {
   price       Int
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  cartItem    CartItem[]
+  CartItem    CartItem[]
 
   @@map("products")
 }
 
 model Cart {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  items     CartItem[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  cartItem  CartItem[]
 
   @@map("carts")
 }
