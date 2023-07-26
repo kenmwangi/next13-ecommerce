@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "./css/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -20,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased tracking-tight`}>
-        <div className="flex flex-col min-h-screen">{children}</div>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );
