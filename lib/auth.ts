@@ -5,6 +5,7 @@ import { NextAuthOptions } from "next-auth";
 import { env } from "./validations/env";
 
 import GoogleProvider from "next-auth/providers/google";
+import { mergeAnonymousCartIntoUserCart } from "./cart";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -18,6 +19,11 @@ export const authOptions: NextAuthOptions = {
     session({ session, user }) {
       session.user.id = user.id;
       return session;
+    },
+  },
+  events: {
+    async signIn({ user }) {
+      await mergeAnonymousCartIntoUserCart(user.id);
     },
   },
 };
