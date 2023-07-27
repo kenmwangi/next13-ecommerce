@@ -23,7 +23,7 @@ export default async function Navbar() {
   const cart = await getCart();
 
   const session = await getServerSession(authOptions);
-
+  console.log(session);
   return (
     <div className="h-16 border-b-[1px] border-neutral-100">
       <Container>
