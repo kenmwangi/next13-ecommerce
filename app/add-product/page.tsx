@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Add product",
@@ -11,6 +13,12 @@ export const metadata: Metadata = {
 
 async function addProduct(formData: FormData) {
   "use server";
+
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
 
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
@@ -28,7 +36,12 @@ async function addProduct(formData: FormData) {
   redirect("/");
 }
 
-export default function AddProduct() {
+export default async function AddProduct() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
       <Container>
