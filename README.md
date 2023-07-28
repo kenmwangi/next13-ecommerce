@@ -1,3 +1,13 @@
 # Next 13 Ecommerce
 
-Experimenting the use of Nextjs 13 new features such as **Server Actions**, **React server-components**, **Data fetching** and **Transition** hook.
+Fullstack Ecommerce site with the use of Nextjs 13 new features such as **Server Actions**, **React server-components**, **Data fetching** and **Transition** hook.
+
+## Tech Stack
+
+- Nextjs 13
+- Tailwindcss
+- Next-auth
+- Prisma
+- MongoDB
+- Vercel
+- GitHub Actions
