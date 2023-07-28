@@ -1,7 +1,13 @@
 "use client";
 import Container from "@/components/Container";
+import { Metadata } from "next";
 import { useRouter } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "404",
+  description: "Something went wrong",
+};
 export default function NotFound() {
   const router = useRouter();
 

@@ -39,9 +39,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           </h4>
         </div>
 
-        <p className="mt-2 text-sm font-medium leading-4 text-gray-500">
+        {/* <p className="mt-2 text-sm font-medium leading-4 text-gray-500">
           {product.description}
-        </p>
+        </p> */}
         <p className="mt-3 text-gray-600">{formatPrice(product.price)}</p>
       </div>
     </div>
