@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import { useMobileMenu } from "@/context/mobile-menu-context";
@@ -63,14 +63,15 @@ export default function Header() {
         >
           <div className="flex-1 basis-0 h-full flex items-center">
             <div className="block lg:hidden">
-              <Hamburger setOpen={toggle} />
+              {/* <Hamburger setOpen={toggle} /> */}
+              <MobileMenu />
             </div>
             <div className="hidden lg:block h-full">
               <DropdownMenu />
             </div>
           </div>
 
-          <div className="flex items-center h-full">
+          <div className="flex items-center gap-5 h-full">
             <Link href="/" className="text-xl uppercase">
               Ecommerce.
             </Link>
@@ -83,7 +84,7 @@ export default function Header() {
             <CartDropdown />
           </div>
         </nav>
-        <MobileMenu />
+        {/* <MobileMenu /> */}
       </header>
     </div>
   );

@@ -36,7 +36,7 @@ export default async function Navbar() {
           <form action={searchProducts}>
             <input
               type="search"
-              name="search"
+              name="searchQuery"
               id="search"
               placeholder="Search ..."
               className="form-input"

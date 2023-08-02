@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export const metadata: Metadata = {
   title: "Add product",
@@ -33,7 +34,7 @@ async function addProduct(formData: FormData) {
     data: { name, description, imageUrl, price },
   });
 
-  redirect("/");
+  revalidatePath("/cart");
 }
 
 export default async function AddProduct() {

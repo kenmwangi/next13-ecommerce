@@ -1,5 +1,6 @@
+import LoadingDots from "@/components/Utils/loading-dots";
 import React from "react";
 
 export default function Loading() {
-  return <span className="m-auto block">Loading ...</span>;
+  return <LoadingDots className="" />;
 }

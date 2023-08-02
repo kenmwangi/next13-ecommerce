@@ -28,8 +28,8 @@ export default function RootLayout({
         <EcommerceProviders>
           <SessionProviders>
             <div className="flex flex-col min-h-screen">
-              {/* <Navbar /> */}
-              <Header />
+              <Navbar />
+              {/* <Header /> */}
               <main className="grow">{children}</main>
               <Footer />
             </div>
