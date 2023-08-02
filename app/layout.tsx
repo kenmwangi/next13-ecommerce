@@ -10,11 +10,34 @@ import EcommerceProviders from "@/providers/EcommerceProviders";
 const inter = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ken-ecommerce.vercel.app/"),
   title: {
     default: "Home | Ecommerce Shop",
     template: "%s | Ecommerce Shop",
   },
-  description: "Buy & shop conviniently at comfort of your Home",
+  description: "Buy & shop conveniently at comfort of your Home",
+  openGraph: {
+    title: "Ecommerce Shop",
+    description: "Buy & shop conveniently at comfort of your Home",
+    url: "https://ken-ecommerce.vercel.app/",
+    siteName: "Ecommerce Shop",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: "ken_cipher",
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
