@@ -11,3 +11,5 @@ Fullstack Ecommerce site with the use of Nextjs 13 new features such as **Server
 - MongoDB
 - Vercel
 - GitHub Actions
+
+Server Actions although in alpha stage is an exciting and powerful feature.
